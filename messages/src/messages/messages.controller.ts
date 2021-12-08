@@ -8,8 +8,6 @@ export class MessagesController {
   
 
   constructor(public messagesService: MessagesService) {
-    // DONT DO THIS ON REAL APP
-    // USE DEPENDENCY INJECTION
    
   }
 
