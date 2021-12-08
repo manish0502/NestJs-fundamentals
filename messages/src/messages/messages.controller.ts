@@ -1,46 +1,35 @@
-import { Controller ,Get, Post ,Body, Param} from '@nestjs/common';
-
-import { CreateMessageDto } from './dtos/create-class.dto'
+import { Controller, Get, Post, Body, Param ,NotFoundException} from '@nestjs/common';
+import { CreateMessageDto } from './dtos/create-class.dto';
+import { MessagesService } from './messages.service';
 
 @Controller('messages')
 export class MessagesController {
+  messagesService: MessagesService;
 
+  constructor() {
+    // DONT DO THIS ON REAL APP
+    // USE DEPENDENCY INJECTION
+    this.messagesService = new MessagesService();
+  }
 
-// http://localhost:3000/messages
+  @Get()
+  listMessages() {
+    return this.messagesService.findAll();
+  }
 
- @Get()
- listMessages(){
-     return 'Here is the List of Messages'
- }
+  @Post()
+  createMessage(@Body() body: CreateMessageDto) {
+    return this.messagesService.create(body.content);
+  }
 
+  @Get('/:id')
+  async getMessage(@Param('id') id: string) {
+    const message = await this.messagesService.findOne(id);
+    if (!message) {
+      throw new NotFoundException('message not found');
+    }
 
-// http://localhost:3000/messages
-
- @Post()
- createMessage(@Body() body:CreateMessageDto){
-     console.log(body)
- }
-
-
- /**if you pass number instaed of string you will get folowing things  in createMessage
-  * {
-    "statusCode": 400,
-    "message": [
-        "content must be a string"
-    ],
-    "error": "Bad Request"
-   }
-   
- */
-
-// http://localhost:3000/messages/2
-
- @Get('/:id')
- getMessage(@Param('id') id:string){
-
-    console.log(id)
- }
- 
-
-
+    return message;
+  }
+  
 }
