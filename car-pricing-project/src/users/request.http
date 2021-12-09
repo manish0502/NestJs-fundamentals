@@ -12,5 +12,22 @@ content-type: application/json
 }
 
 
-### Get a particular message
-GET http://localhost:3000/messages/1673
+### Get a All user based on Email
+GET http://localhost:3000/auth?email=Mohan@gmail.com
+
+### Get a particular user with their ID
+GET http://localhost:3000/auth/3
+
+
+
+### Remove a particular user with their ID
+DELETE http://localhost:3000/auth/9
+
+
+### Update a user
+PATCH http://localhost:3000/auth/15
+content-type: application/json
+
+{
+  "password": "aaaaa"
+}
