@@ -2,7 +2,7 @@
 GET http://localhost:3000/messages
 
 
-### Create a new message
+### signup the user
 POST http://localhost:3000/auth/signup
 content-type: application/json
 
