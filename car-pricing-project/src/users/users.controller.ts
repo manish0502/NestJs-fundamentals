@@ -25,7 +25,14 @@ export class UsersController {
 
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
-    this.authService.signup(body.email, body.password);
+    return this.authService.signup(body.email, body.password);
+  }
+
+
+  @Post('/signin')
+  logUser(@Body() body: CreateUserDto) {
+   return this.authService.signin(body.email, body.password);
+    //console.log('signin')
   }
 
   //http://localhost:3000/auth/3
