@@ -22,6 +22,22 @@ import { UserDto } from './dtos/user.dto'
 export class UsersController {
   constructor(private userService: UsersService , private authService:AuthService) {}
 
+
+  @Get('/whoami')
+  whoAmI(@Session() session: any) {
+    return this.userService.findOne(session.userId);
+  }
+
+ 
+  //http://localhost:3000/auth/signout
+
+  @Post('/signout')
+   signOut(@Session() session: any) {
+    session.userId = null;
+    console.log('Signout')
+  }
+
+
   //http://localhost:3000/auth/signup
 
   @Post('/signup')
@@ -30,7 +46,9 @@ export class UsersController {
     session.userId = user.id;
     return user;
   }
+ 
 
+  //http://localhost:3000/auth/signin
 
   @Post('/signin')
   async logUser(@Body() body: CreateUserDto ,@Session() session: Record<string, any>) {
@@ -39,6 +57,7 @@ export class UsersController {
    return user;
    
   }
+
 
   // @Post('/signin')
   // async logUser(@Body() body: CreateUserDto ,@Session() session: any) {
