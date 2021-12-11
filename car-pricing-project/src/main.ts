@@ -1,13 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-const cookieSession = require('cookie-session');
+//const cookieSession = require('cookie-session');
+import * as session from 'express-session';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // app.use(
+  //   cookieSession({
+  //     keys: ['asdfasfd'],
+  //   }),
+  // );
+
   app.use(
-    cookieSession({
-      keys: ['asdfasfd'],
+    session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 60000 }
     }),
   );
   app.useGlobalPipes(
