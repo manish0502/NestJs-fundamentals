@@ -1,0 +1,51 @@
+### List all messages
+GET http://localhost:3000/messages
+
+
+### signup the user
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+  "email": "amit@gmail.com",
+  "password": "123456"
+}
+
+
+### signin the user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "amit@gmail.com",
+  "password": "123456"
+}
+
+### Get user loggin details
+GET http://localhost:3000/auth/whoami
+
+
+### Sign Out
+POST http://localhost:3000/auth/signout
+
+
+
+### Get a All user based on Email
+GET http://localhost:3000/auth?email=Mohan@gmail.com
+
+### Get a particular user with their ID
+GET http://localhost:3000/auth/3
+
+
+
+### Remove a particular user with their ID
+DELETE http://localhost:3000/auth/9
+
+
+### Update a user
+PATCH http://localhost:3000/auth/15
+content-type: application/json
+
+{
+  "password": "aaaaa"
+}

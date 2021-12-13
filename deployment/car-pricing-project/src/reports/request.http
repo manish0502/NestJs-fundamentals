@@ -1,0 +1,51 @@
+###Create the Reporter 
+POST http://localhost:3000/reports
+content-type: application/json
+
+{
+  
+    "make":"Hero",
+    "model":"model2021",
+    "year":2021,
+    "mileage":22,
+    "lng":121,
+    "lat":34,
+    "price":800000
+
+  
+}
+
+
+
+### List the report based on ID
+GET http://localhost:3000/reports/3
+
+
+### signup the user
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+  "email": "amit@gmail.com",
+  "password": "123456"
+}
+
+
+### signin the user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "amit@gmail.com",
+  "password": "123456"
+}
+
+### Get user loggin details
+GET http://localhost:3000/auth/whoami
+
+
+### Sign Out
+POST http://localhost:3000/auth/signout
+
+
+
