@@ -7,6 +7,7 @@ import {
     IsLatitude,
   } from 'class-validator';
   
+  
   export class CreateReportDto {
     @IsString()
     make: string;
