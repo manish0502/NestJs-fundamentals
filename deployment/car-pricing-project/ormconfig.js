@@ -12,6 +12,7 @@ var dbConfig = {
         type: 'sqlite',
         database: 'db.sqlite',
         entities: ['**/*.entity.js'],
+
       });
       break;
     case 'test':
@@ -22,6 +23,17 @@ var dbConfig = {
       });
       break;
     case 'production':
+      Object.assign(dbConfig, {
+        type:'postgres',
+        url:process.env.DATABSE_URL,
+        migrationsRun:true,
+        entities: ['**/*.entity.js'],
+        ssl:{
+          rejectUnauthorized: false
+        }
+
+
+      })
       break;
     default:
       throw new Error('unknown environment');
